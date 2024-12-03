@@ -1,0 +1,1 @@
+Run `go run .` to print solution for both parts in day 1
