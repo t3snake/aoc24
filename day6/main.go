@@ -15,5 +15,5 @@ func timer(name string) func() {
 func main() {
 	defer timer("part1")()
 	PrintTotalVisitedNodes()
-	// PrintWrongUpdateSum()
+	PrintPossibleCycles()
 }

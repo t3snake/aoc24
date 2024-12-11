@@ -14,7 +14,7 @@ type Vector struct {
 	y int
 }
 
-func getInitialDirection(direction byte) Vector {
+func GetInitialDirection(direction byte) Vector {
 	if direction == '^' {
 		return Vector{
 			x: 0,
@@ -43,22 +43,22 @@ func getInitialDirection(direction byte) Vector {
 	}
 }
 
-func turn90Degrees(direction Vector) Vector {
+func Turn90Degrees(direction Vector) Vector {
 	if direction.x == 1 && direction.y == 0 {
-		return getInitialDirection('v')
+		return GetInitialDirection('v')
 	} else if direction.x == 0 && direction.y == 1 {
-		return getInitialDirection('<')
+		return GetInitialDirection('<')
 	} else if direction.x == -1 && direction.y == 0 {
-		return getInitialDirection('^')
+		return GetInitialDirection('^')
 	} else if direction.x == 0 && direction.y == -1 {
-		return getInitialDirection('>')
+		return GetInitialDirection('>')
 	} else {
 		// (0,0)
-		return getInitialDirection('a')
+		return GetInitialDirection('a')
 	}
 }
 
-func withinBounds(grid []string, position Vector) bool {
+func WithinBounds(grid []string, position Vector) bool {
 	if position.x < 0 || position.y < 0 {
 		return false
 	}
@@ -70,7 +70,7 @@ func withinBounds(grid []string, position Vector) bool {
 	return true
 }
 
-func getNextPosition(position, direction Vector) Vector {
+func GetNextPosition(position, direction Vector) Vector {
 	return Vector{
 		x: position.x + direction.x,
 		y: position.y + direction.y,
@@ -93,7 +93,7 @@ func PrintTotalVisitedNodes() {
 	for row := 0; row < len(grid); row++ {
 		for col := 0; col < len(grid); col++ {
 			if grid[row][col] != '.' && grid[row][col] != '#' {
-				direction = getInitialDirection(grid[row][col])
+				direction = GetInitialDirection(grid[row][col])
 				position = Vector{
 					x: col,
 					y: row,
@@ -104,11 +104,11 @@ func PrintTotalVisitedNodes() {
 
 	visited[position] = true
 
-	for withinBounds(grid, position) {
-		next_pos := getNextPosition(position, direction)
+	for WithinBounds(grid, position) {
+		next_pos := GetNextPosition(position, direction)
 
-		if withinBounds(grid, next_pos) && grid[next_pos.y][next_pos.x] == '#' {
-			direction = turn90Degrees(direction)
+		if WithinBounds(grid, next_pos) && grid[next_pos.y][next_pos.x] == '#' {
+			direction = Turn90Degrees(direction)
 			continue
 		} else {
 			position = next_pos
