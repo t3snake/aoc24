@@ -14,6 +14,8 @@ func timer(name string) func() {
 
 func main() {
 	defer timer("day7")()
-	PrintSumValidResult()
+
+	//PrintSumValidResult()
+	PrintSumValidResultWithConcat()
 
 }
