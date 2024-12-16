@@ -13,9 +13,8 @@ func timer(name string) func() {
 }
 
 func main() {
-	defer timer("day8")()
+	defer timer("day9")()
 
-	PrintUniqueAntinodes()
-	PrintExtendedAntinodes()
+	PrintChecksum()
 
 }
